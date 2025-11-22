@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FalconFlix | Premier RWA Cinema Protocol</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Roboto:wght@300;400;500;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        heading: ['Oswald', 'sans-serif'],
+                        mono: ['Rajdhani', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            gold: '#C5A059', // More refined, less yellow gold
+                            dark: '#080808',
+                            gray: '#1F1F1F',
+                            accent: '#FF3B30'
+                        }
+                    },
+                    maxWidth: {
+                        'site': '1180px', // Tighter container for professional look
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: #E0E0E0; }
+        
+        /* Complex Glassmorphism */
+        .pro-glass {
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Golden Text Gradient */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #FCEEAC 0%, #C5A059 50%, #9A7D0A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Tech Grid Background */
+        .bg-tech {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed w-full z-50 bg-black/95 border-b border-white/10 h-24 transition-all">
+        <div class="max-w-site mx-auto px-6 h-full flex justify-between items-center">
+            <div class="flex items-center gap-5">
+                <img src="logo.png" alt="FalconFlix" class="h-16 w-16 rounded-lg border border-brand-gold/40 shadow-[0_0_15px_rgba(197,160,89,0.3)]">
+                <div class="flex flex-col justify-center h-full">
+                    <span class="font-heading font-bold text-3xl text-white leading-none tracking-wide">FALCON<span class="text-gold-gradient">FLIX</span></span>
+                    <span class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.25em] mt-1">RWA Cinema Protocol</span>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex items-center space-x-8 text-sm font-medium text-gray-400">
+                <a href="#vision" class="hover:text-white transition uppercase tracking-wider">Vision</a>
+                <a href="#assets" class="hover:text-white transition uppercase tracking-wider">Assets</a>
+                <a href="#ecosystem" class="hover:text-white transition uppercase tracking-wider">Ecosystem</a>
+                <a href="#token" class="hover:text-white transition uppercase tracking-wider">FLC Token</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="hidden xl:flex flex-col items-end mr-2">
+                    <span class="text-[10px] text-gray-500 uppercase font-bold">FLC Price</span>
+                    <span class="text-brand-gold font-mono font-bold text-lg">$0.15 USD</span>
+                </div>
+                <button class="bg-white text-black hover:bg-brand-gold transition font-bold px-6 py-3 rounded-sm uppercase tracking-wider text-xs flex items-center gap-2 shadow-lg">
+                    <i class="fa-solid fa-wallet"></i> Connect Wallet
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative h-screen min-h-[800px] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="hero-bg.WEBP" class="w-full h-full object-cover opacity-50 scale-105">
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-black/80"></div>
+        </div>
+
+        <div class="relative z-10 max-w-site mx-auto px-6 w-full pt-20">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="inline-flex items-center gap-3 px-3 py-1 border-l-2 border-brand-gold bg-white/5 backdrop-blur-md">
+                        <span class="text-brand-gold text-xs font-bold uppercase tracking-widest">Private Sale Round A</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                    </div>
+                    
+                    <h1 class="text-6xl lg:text-8xl font-heading font-bold text-white leading-[0.9]">
+                        REDEFINING <br>
+                        <span class="text-gold-gradient">CINEMA ASSETS</span>
+                    </h1>
+                    
+                    <p class="text-lg text-gray-400 max-w-lg leading-relaxed font-light">
+                        The World's First AI + Web3 Short Drama Ecosystem. <br>
+                        We transform billion-dollar box office potentials into on-chain <strong>Real World Assets (RWA)</strong>.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="#invest" class="px-10 py-4 bg-brand-gold hover:bg-white hover:text-black text-black font-bold uppercase tracking-widest transition shadow-[0_0_20px_rgba(197,160,89,0.4)] clip-path-polygon">
+                            Invest Now
+                        </a>
+                        <a href="#" class="px-8 py-4 border border-white/20 hover:border-white text-white font-bold uppercase tracking-widest transition flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf"></i> Whitepaper
+                        </a>
+                    </div>
+
+                    <div class="flex gap-8 pt-8 border-t border-white/10">
+                        <div>
+                            <div class="text-gray-500 text-[10px] uppercase font-bold mb-1">Target Raise</div>
+                            <div class="text-3xl font-mono font-bold text-white">$30M</div>
+                        </div>
+                        <div class="w-px h-10 bg-white/10"></div>
+                        <div>
+                            <div class="text-gray-500 text-[10px] uppercase font-bold mb-1">Market Cap</div>
+                            <div class="text-3xl font-mono font-bold text-white">$50B+</div>
+                        </div>
+                        <div class="w-px h-10 bg-white/10"></div>
+                        <div>
+                            <div class="text-gray-500 text-[10px] uppercase font-bold mb-1">Backers</div>
+                            <div class="flex gap-2 text-xl text-brand-gold">
+                                <i class="fa-solid fa-building-columns"></i>
+                                <i class="fa-solid fa-tv"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="border-y border-white/5 bg-black">
+        <div class="max-w-site mx-auto px-6 py-6 flex justify-between items-center opacity-60 grayscale hover:grayscale-0 transition duration-500">
+            <span class="text-sm font-bold text-gray-500 uppercase tracking-widest mr-8">Strategic Partners:</span>
+            <div class="flex-1 flex justify-between gap-8 overflow-hidden">
+                <div class="flex items-center gap-2 text-white font-heading font-bold text-lg"><i class="fa-solid fa-chess-rook text-brand-gold"></i> AL-RAMEZ GROUP</div>
+                <div class="flex items-center gap-2 text-white font-heading font-bold text-lg"><i class="fa-solid fa-tv text-red-600"></i> ASIA TV</div>
+                <div class="flex items-center gap-2 text-white font-heading font-bold text-lg"><i class="fa-solid fa-film text-blue-500"></i> NIBIRU FILM</div>
+                <div class="flex items-center gap-2 text-white font-heading font-bold text-lg"><i class="fa-brands fa-ethereum"></i> POLYGON</div>
+            </div>
+        </div>
+    </div>
+
+    <section id="assets" class="py-24 bg-tech relative">
+        <div class="max-w-site mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <span class="text-brand-gold font-mono font-bold uppercase tracking-widest text-sm">/// RWA Portfolio</span>
+                    <h2 class="text-4xl font-heading font-bold text-white mt-2">CORE ASSETS 2025</h2>
+                </div>
+                <button class="text-xs text-gray-400 hover:text-white uppercase tracking-widest border-b border-transparent hover:border-white transition pb-1">View Full Catalog -></button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="group relative bg-[#0F0F0F] border border-white/10 hover:border-brand-gold/50 transition duration-500">
+                    <div class="flex flex-col md:flex-row h-full">
+                        <div class="md:w-5/12 relative overflow-hidden">
+                            <img src="movie-1.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter brightness-75 group-hover:brightness-100">
+                            <div class="absolute top-0 left-0 bg-brand-gold text-black text-[10px] font-bold px-3 py-1 uppercase">Premier Asset</div>
+                        </div>
+                        <div class="md:w-7/12 p-8 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-heading font-bold text-white mb-2">SHADOW OF THE SANDS</h3>
+                                <p class="text-xs text-gray-500 uppercase tracking-wider mb-4">Genre: Action / Mystery · MENA</p>
+                                <p class="text-sm text-gray-400 leading-relaxed mb-6">High-budget production targeting the 500M+ Arabic speaking market. Verified IP with 170%+ projected ROI.</p>
+                            </div>
+                            
+                            <div class="bg-white/5 p-4 border border-white/5 mb-6">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <span class="text-[9px] text-gray-500 uppercase block">Valuation</span>
+                                        <span class="text-lg font-mono font-bold text-white">$5.2M</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-[9px] text-gray-500 uppercase block">Release</span>
+                                        <span class="text-lg font-mono font-bold text-brand-gold">Q1 2025</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full py-3 border border-white/20 text-white text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">View Contract</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative bg-[#0F0F0F] border border-white/10 hover:border-blue-500/50 transition duration-500">
+                    <div class="flex flex-col md:flex-row h-full">
+                        <div class="md:w-5/12 relative overflow-hidden">
+                            <img src="movie-2.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter brightness-75 group-hover:brightness-100">
+                            <div class="absolute top-0 left-0 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 uppercase">AI Powered</div>
+                        </div>
+                        <div class="md:w-7/12 p-8 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-2xl font-heading font-bold text-white mb-2">KING OF THE CITY</h3>
+                                <p class="text-xs text-gray-500 uppercase tracking-wider mb-4">Genre: Sci-Fi / Cyberpunk</p>
+                                <p class="text-sm text-gray-400 leading-relaxed mb-6">Leveraging AI face-swapping & dubbing for simultaneous global release. Breaking language barriers instantly.</p>
+                            </div>
+                            
+                            <div class="bg-white/5 p-4 border border-white/5 mb-6">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <span class="text-[9px] text-gray-500 uppercase block">Valuation</span>
+                                        <span class="text-lg font-mono font-bold text-white">$8.5M</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-[9px] text-gray-500 uppercase block">Release</span>
+                                        <span class="text-lg font-mono font-bold text-blue-500">Q2 2025</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="w-full py-3 border border-white/20 text-white text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">View Contract</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ecosystem" class="py-24 bg-black relative border-t border-white/5">
+        <div class="max-w-site mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                    <div class="relative rounded-xl overflow-hidden border border-white/10">
+                        <img src="interactive.jpg" alt="Interactive Shopping Experience" class="w-full h-auto shadow-2xl transform group-hover:scale-[1.02] transition duration-700">
+                        
+                        <div class="absolute bottom-6 right-6 bg-black/80 backdrop-blur-md border border-white/10 p-4 rounded-lg shadow-xl">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-brand-gold/20 rounded-full flex items-center justify-center text-brand-gold">
+                                    <i class="fa-solid fa-bag-shopping"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-gray-400 uppercase font-bold">Live Transaction</p>
+                                    <p class="text-sm text-white font-bold font-mono">+ 500 FLC Rewards</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <h2 class="text-4xl lg:text-5xl font-heading font-bold text-white">
+                        WATCH. SHOP. <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">EARN REWARDS.</span>
+                    </h2>
+                    <p class="text-lg text-gray-400 leading-relaxed">
+                        FalconFlix introduces a revolutionary <strong>"Contextual Commerce"</strong> layer. 
+                        Viewers can purchase items seen in the drama directly through the app. 
+                        Every purchase burns FLC tokens and rewards the viewer.
+                    </p>
+                    
+                    <ul class="space-y-6 mt-4">
+                        <li class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded bg-[#111] border border-white/10 flex items-center justify-center shrink-0 text-brand-gold text-xl"><i class="fa-solid fa-crosshairs"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold uppercase tracking-wider text-sm">Seamless Integration</h4>
+                                <p class="text-sm text-gray-500 mt-1">AI identifies products in real-time. One-click checkout.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded bg-[#111] border border-white/10 flex items-center justify-center shrink-0 text-blue-500 text-xl"><i class="fa-solid fa-rotate"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold uppercase tracking-wider text-sm">Ecosystem Loop</h4>
+                                <p class="text-sm text-gray-500 mt-1">Transactions drive FLC demand. Viewers become stakeholders.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="invest" class="py-32 relative bg-[#080808] overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="banner.webp" class="w-full h-full object-cover opacity-20 blur-sm">
+            <div class="absolute inset-0 bg-[#080808]/90"></div>
+        </div>
+
+        <div class="max-w-site mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                
+                <div class="lg:col-span-5 space-y-10">
+                    <div>
+                        <h2 class="text-brand-gold font-mono font-bold uppercase tracking-widest text-sm mb-2">/// Tokenomics</h2>
+                        <h3 class="text-5xl font-heading font-bold text-white">FLC TOKEN</h3>
+                    </div>
+                    
+                    <p class="text-gray-400 leading-relaxed">
+                        FLC is the governance and utility token of the FalconFlix ecosystem. 
+                        It captures value from content revenue, NFT trading fees, and advertising slots.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-white/5 p-5 border border-white/10 rounded-lg">
+                            <p class="text-xs text-gray-500 uppercase font-bold">Total Supply</p>
+                            <p class="text-2xl font-mono font-bold text-white">1 Billion</p>
+                        </div>
+                        <div class="bg-white/5 p-5 border border-white/10 rounded-lg">
+                            <p class="text-xs text-gray-500 uppercase font-bold">Private Price</p>
+                            <p class="text-2xl font-mono font-bold text-brand-gold">$0.15</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-bold uppercase text-gray-400 mb-1">
+                                <span>Private Sale</span>
+                                <span>40%</span>
+                            </div>
+                            <div class="h-1.5 w-full bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-brand-gold w-[40%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold uppercase text-gray-400 mb-1">
+                                <span>Community Incentives</span>
+                                <span>35%</span>
+                            </div>
+                            <div class="h-1.5 w-full bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 w-[35%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold uppercase text-gray-400 mb-1">
+                                <span>Team (Vested 2Y)</span>
+                                <span>15%</span>
+                            </div>
+                            <div class="h-1.5 w-full bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-gray-500 w-[15%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="pro-glass p-8 md:p-10 rounded-xl border border-brand-gold/30 relative">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-gold to-transparent"></div>
+                        
+                        <div class="flex justify-between items-start mb-10">
+                            <div>
+                                <h3 class="text-2xl font-heading font-bold text-white">PRIVATE SALE ALLOCATION</h3>
+                                <p class="text-sm text-gray-400 mt-1">Phase 1: Strategic Round</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="inline-block px-2 py-1 rounded bg-green-900/30 text-green-500 text-[10px] font-bold uppercase border border-green-500/30 animate-pulse">Live Status</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-black/60 p-6 rounded-lg border border-white/10 mb-6">
+                            <label class="flex justify-between text-xs font-bold text-gray-500 uppercase mb-2">
+                                <span>You Pay (USDT / USDC)</span>
+                                <span>Min: $5,000</span>
+                            </label>
+                            <div class="flex items-center justify-between">
+                                <input type="number" value="5000" class="bg-transparent text-4xl font-mono font-bold text-white outline-none w-full" placeholder="0.00">
+                                <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded border border-white/10">
+                                    <img src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=025" class="w-5 h-5">
+                                    <span class="font-bold text-sm">USDT</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center -my-6 relative z-10">
+                            <div class="w-10 h-10 bg-brand-gold rounded-full flex items-center justify-center text-black border-4 border-[#141414]">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/5 p-6 rounded-lg border border-brand-gold/20 mb-8 mt-2">
+                            <label class="flex justify-between text-xs font-bold text-brand-gold uppercase mb-2">
+                                <span>You Receive (FLC)</span>
+                                <span>1 FLC = $0.15</span>
+                            </label>
+                            <div class="flex items-center justify-between">
+                                <span class="text-4xl font-mono font-bold text-brand-gold">33,333.33</span>
+                                <div class="flex items-center gap-2">
+                                    <img src="logo.png" class="w-6 h-6 rounded">
+                                    <span class="font-bold text-sm text-white">FLC</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="w-full py-5 bg-white text-black hover:bg-brand-gold transition font-bold text-lg uppercase tracking-widest rounded-sm shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                            Connect Wallet & Buy
+                        </button>
+                        
+                        <p class="text-center text-[10px] text-gray-600 mt-4 uppercase tracking-wider">
+                            * Secured by Smart Contracts · Audited by CertiK
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black border-t border-white/10 pt-20 pb-10">
+        <div class="max-w-site mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="logo.png" class="h-10 w-10 rounded opacity-70 grayscale">
+                        <span class="font-heading font-bold text-xl text-gray-500">FALCONFLIX</span>
+                    </div>
+                    <p class="text-gray-600 text-sm max-w-xs leading-relaxed">
+                        The infrastructure for the next generation of decentralized cinema. 
+                        Bridging MENA entertainment with global Web3 liquidity.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-6">Platform</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand-gold transition">Marketplace</a></li>
+                        <li><a href="#" class="hover:text-brand-gold transition">Governance</a></li>
+                        <li><a href="#" class="hover:text-brand-gold transition">Staking</a></li>
+                        <li><a href="#" class="hover:text-brand-gold transition">Creator Portal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-6">Legal</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand-gold transition">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-brand-gold transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-brand-gold transition">Risk Disclosure</a></li>
+                        <li><a href="#" class="hover:text-brand-gold transition">Audit Report</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+                <p>&copy; 2025 FalconFlix Foundation. Singapore | Dubai.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-x-twitter text-lg"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-telegram text-lg"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-discord text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
