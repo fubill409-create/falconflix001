@@ -119,7 +119,8 @@
                         <button onclick="openPaymentModal()" class="px-8 py-4 bg-gold text-black font-bold uppercase tracking-wider rounded hover:scale-105 transition text-center shadow-lg">
                             <span lang="zh">立即认购</span><span lang="en">Invest Now</span>
                         </button>
-                        <button onclick="showVideoDemo()" class="px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-wider rounded hover:bg-white/10 transition flex items-center justify-center gap-2">
+                        <!-- 修改：这里指定播放项目简介视频 -->
+                        <button onclick="showVideoDemo('main')" class="px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-wider rounded hover:bg-white/10 transition flex items-center justify-center gap-2">
                             <i class="fa-solid fa-play-circle"></i> <span lang="zh">观看片花</span><span lang="en">Watch Demo</span>
                         </button>
                     </div>
@@ -254,7 +255,8 @@
             <div class="relative h-64 md:h-auto bg-black">
                 <img id="pm-img" src="" class="w-full h-full object-cover opacity-80">
                 <div class="absolute inset-0 flex items-center justify-center">
-                    <button onclick="showVideoDemo()" class="w-16 h-16 bg-gold/90 rounded-full flex items-center justify-center text-black text-2xl hover:scale-110 transition"><i class="fa-solid fa-play ml-1"></i></button>
+                    <!-- 修改：为播放按钮添加 id，方便根据项目切换视频 -->
+                    <button id="pm-play-btn" onclick="showVideoDemo()" class="w-16 h-16 bg-gold/90 rounded-full flex items-center justify-center text-black text-2xl hover:scale-110 transition"><i class="fa-solid fa-play ml-1"></i></button>
                 </div>
             </div>
             <div class="p-8 flex flex-col justify-center">
@@ -326,17 +328,24 @@
             const title = document.getElementById('pm-title');
             const desc = document.getElementById('pm-desc');
             const val = document.getElementById('pm-val');
+            const playBtn = document.getElementById('pm-play-btn');
 
             if(type === 'sand') {
                 img.src = 'movie-1.png';
                 title.innerText = '沙影侠 (Shadow of Sands)';
                 desc.innerText = '2025中东动作悬疑巨制。沙漠中的神秘交易，到底谁是内鬼？';
                 val.innerText = '$5.2M';
+                if (playBtn) {
+                    playBtn.setAttribute('onclick', "showVideoDemo('sand')");
+                }
             } else {
                 img.src = 'movie-2.png';
                 title.innerText = '城市之王 (King of City)';
                 desc.innerText = '硬核赛博朋克科幻片。AI全流程制作，展现未来迪拜。';
                 val.innerText = '$8.5M';
+                if (playBtn) {
+                    playBtn.setAttribute('onclick', "showVideoDemo('city')");
+                }
             }
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -384,9 +393,34 @@
             });
         }
 
-        // 7. 视频演示提示
-        function showVideoDemo() {
-            Swal.fire({ title: 'Demo Video', html: '<div class="text-gray-400">此处播放预告片<br>(演示模式)</div>', background: '#111', color: '#fff', confirmButtonColor: '#333' });
+        // 7. 视频演示：根据不同类型播放不同视频
+        function showVideoDemo(type) {
+            let src = '';
+            let title = '';
+
+            if (type === 'main') {
+                src = 'falconflix-en.MP4';
+                title = 'FALCON FLIX 项目简介';
+            } else if (type === 'sand') {
+                src = 'syx.MP4';
+                title = '《沙影侠》视频简介';
+            } else if (type === 'city') {
+                src = 'jlds.M4V';
+                title = '《君临都市》视频简介';
+            } else {
+                // 默认回退到项目简介
+                src = 'falconflix-en.MP4';
+                title = 'FALCON FLIX 项目简介';
+            }
+
+            Swal.fire({
+                title: title,
+                html: '<div class="w-full"><video controls autoplay style="width:100%;height:auto;border-radius:0.5rem;outline:none;"><source src="' + src + '" type="video/mp4">您的浏览器不支持视频播放。</video></div>',
+                background: '#111',
+                color: '#fff',
+                showCloseButton: true,
+                showConfirmButton: false
+            });
         }
         
         // 8. 图片放大查看
