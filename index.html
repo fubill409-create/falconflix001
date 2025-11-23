@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FALCON FLIX | 数字金融影视 RWA 终端</title>
+    <title>鹰眼短剧 | 全球首个短剧 RWA 数字资产平台</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
@@ -13,165 +13,155 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Noto Sans SC"', 'sans-serif'],
-                        heading: ['Oswald', 'sans-serif'],
-                        mono: ['Rajdhani', 'sans-serif'],
+                        sans: ['"Noto Sans SC"', 'sans-serif'], // 强制中文黑体
+                        mono: ['Rajdhani', 'sans-serif'], // 数字专用字体
                     },
                     colors: {
-                        gold: {
-                            DEFAULT: '#D4AF37',
-                            light: '#FCEEAC',
-                            dark: '#8A6E1C'
-                        },
-                        tech: {
-                            bg: '#020408',
-                            panel: '#0D1117',
-                            border: '#1F2937'
-                        }
+                        gold: { DEFAULT: '#D4AF37', light: '#FCEEAC', dark: '#8A6E1C' },
+                        tech: { bg: '#020408', panel: '#0D1117', border: '#1F2937' }
                     },
                     backgroundImage: {
-                        'circuit': "url('https://www.transparenttextures.com/patterns/circuit-board.png')",
+                        'gradient-gold': 'linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #B38728 100%)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #020408; color: #cbd5e1; }
+        body { background-color: #020408; color: #e5e5e5; }
         
-        /* 金融面板风格 */
-        .fin-panel {
-            background: rgba(13, 17, 23, 0.85);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            backdrop-filter: blur(12px);
-            position: relative;
-            overflow: hidden;
+        /* 磨砂玻璃面板 */
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
-        .fin-panel::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background: linear-gradient(to bottom, #D4AF37, transparent);
-        }
-
-        /* 复杂渐变文字 */
-        .text-gradient-gold {
-            background: linear-gradient(to right, #D4AF37, #FFF8D6, #D4AF37);
+        
+        /* 金色流光文字 */
+        .text-gold-shine {
+            background: linear-gradient(to right, #a37e2c 0%, #fceeb5 50%, #a37e2c 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 900;
         }
 
-        /* 流程连接线 */
-        .flow-line {
-            position: absolute;
-            background: #334155;
-            z-index: 0;
+        /* 复杂的边框效果 */
+        .border-gradient {
+            position: relative;
         }
-        
-        /* 饼图 CSS 实现 */
-        .pie-chart {
-            background: conic-gradient(
-                #D4AF37 0% 30%, 
-                #22C55E 30% 55%, 
-                #3B82F6 55% 65%, 
-                #A855F7 65% 85%, 
-                #EF4444 85% 100%
-            );
-            border-radius: 50%;
+        .border-gradient::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            opacity: 0.5;
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <div class="bg-black border-b border-white/10 py-1 px-4 hidden lg:flex justify-between items-center text-[10px] font-mono text-gray-500 uppercase tracking-widest">
-        <div class="flex gap-6">
-            <span><i class="fa-solid fa-circle text-green-500 mr-1"></i> System Status: Online</span>
-            <span>TVL: $30,000,000</span>
-            <span>Total Users: 500,000+</span>
-        </div>
-        <div class="flex gap-6">
-            <span>FFX/USDT: <span class="text-gold">$0.15</span></span>
-            <span>Next Halving: 365 Days</span>
-        </div>
-    </div>
-
-    <nav class="sticky top-0 z-50 bg-[#020408]/90 backdrop-blur-lg border-b border-white/10 h-20">
-        <div class="max-w-[1400px] mx-auto px-6 h-full flex justify-between items-center">
+    <nav class="fixed w-full z-50 bg-[#020408]/95 backdrop-blur-xl border-b border-white/10 h-20 transition-all">
+        <div class="max-w-[1600px] mx-auto px-6 h-full flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <img src="logo.png" class="h-10 w-10 rounded border border-gold/50">
+                <img src="logo.png" class="h-11 w-11 rounded border border-gold/50 shadow-lg">
                 <div class="flex flex-col">
-                    <span class="font-heading font-bold text-2xl text-white tracking-wide">FALCON <span class="text-gold">FLIX</span></span>
+                    <span class="text-2xl font-bold text-white tracking-wider">鹰眼<span class="text-gold">短剧</span></span>
+                    <span class="text-[10px] text-gray-500 font-medium tracking-widest uppercase">FALCON FLIX RWA</span>
                 </div>
             </div>
-            <div class="hidden xl:flex items-center space-x-1 bg-white/5 p-1 rounded border border-white/10">
-                <a href="#industry" class="px-6 py-2 text-xs font-bold text-gray-300 hover:bg-white/10 hover:text-gold transition uppercase">行业洞察</a>
-                <a href="#process" class="px-6 py-2 text-xs font-bold text-gray-300 hover:bg-white/10 hover:text-gold transition uppercase">投资流程</a>
-                <a href="#profit" class="px-6 py-2 text-xs font-bold text-gray-300 hover:bg-white/10 hover:text-gold transition uppercase">分红机制</a>
-                <a href="#token" class="px-6 py-2 text-xs font-bold text-gray-300 hover:bg-white/10 hover:text-gold transition uppercase">代币经济</a>
+
+            <div class="hidden xl:flex items-center bg-white/5 px-1 py-1 rounded border border-white/10">
+                <a href="#assets" class="px-6 py-2 text-sm font-bold text-gray-300 hover:text-white hover:bg-white/10 rounded transition">核心资产</a>
+                <a href="#market" class="px-6 py-2 text-sm font-bold text-gray-300 hover:text-white hover:bg-white/10 rounded transition">市场数据</a>
+                <a href="#ecosystem" class="px-6 py-2 text-sm font-bold text-gray-300 hover:text-white hover:bg-white/10 rounded transition">生态闭环</a>
+                <a href="#token" class="px-6 py-2 text-sm font-bold text-gray-300 hover:text-white hover:bg-white/10 rounded transition">FFX通证</a>
             </div>
-            <button class="bg-gold hover:bg-yellow-600 text-black font-bold text-xs px-6 py-2.5 rounded flex items-center gap-2 uppercase tracking-wider shadow-[0_0_15px_rgba(212,175,55,0.4)] transition">
-                <i class="fa-solid fa-wallet"></i> Connect Wallet
-            </button>
+
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex flex-col items-end text-right">
+                    <span class="text-[10px] text-gray-500">当前汇率</span>
+                    <span class="text-gold font-mono font-bold text-sm">1 FFX = $0.15</span>
+                </div>
+                <button class="bg-gradient-to-r from-gold to-yellow-700 text-black font-bold text-sm px-6 py-2.5 rounded flex items-center gap-2 hover:scale-105 transition shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+                    <i class="fa-solid fa-wallet"></i> 连接钱包
+                </button>
+            </div>
         </div>
     </nav>
 
-    <header class="relative py-24 lg:py-32 border-b border-white/5">
+    <header class="relative pt-32 pb-20 overflow-hidden min-h-[85vh] flex items-center">
         <div class="absolute inset-0 z-0">
-            <img src="hero-bg.webp" class="w-full h-full object-cover opacity-20">
-            <div class="absolute inset-0 bg-gradient-to-b from-[#020408] via-transparent to-[#020408]"></div>
+            <img src="hero-bg.webp" class="w-full h-full object-cover opacity-40 scale-105 animate-pulse-slow">
+            <div class="absolute inset-0 bg-gradient-to-b from-[#020408] via-[#020408]/70 to-[#020408]"></div>
+            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
         </div>
         
-        <div class="max-w-[1400px] mx-auto px-6 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <div class="inline-flex items-center gap-2 px-3 py-1 border border-gold/30 bg-gold/5 text-gold text-xs font-bold uppercase mb-6">
-                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> RWA Protocol Live
+        <div class="max-w-[1400px] mx-auto px-6 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-7">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 border border-gold/30 bg-gold/10 text-gold text-xs font-bold mb-8 rounded-full">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> 私募 B 轮融资开放中
                     </div>
-                    <h1 class="text-5xl lg:text-7xl font-heading font-bold text-white mb-6 leading-tight">
-                        将 <span class="text-gradient-gold">短剧百亿流量</span> <br>
-                        转化为链上资产
+                    <h1 class="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                        重塑全球 <br>
+                        <span class="text-gold-shine">影视资产价值</span>
                     </h1>
-                    <p class="text-lg text-gray-400 mb-10 max-w-xl leading-relaxed">
-                        FalconFlix 是全球首个去中心化影视 RWA 平台。
-                        <br>我们解决传统影视融资慢、不透明痛点，让用户从“观众”升级为“出品人”，共享票房与版权收益。
+                    <p class="text-xl text-gray-400 mb-10 max-w-2xl leading-relaxed">
+                        全球首个融合 <strong>AI + Web3</strong> 的短剧 RWA 平台。<br>
+                        我们打通了内容制作、全球发行与链上分红的完整闭环。持有 FFX 通证，即刻成为百亿票房的“联合出品人”。
                     </p>
-                    <div class="flex gap-4">
-                        <a href="#invest" class="px-10 py-4 bg-gold text-black font-bold uppercase tracking-wider hover:bg-white transition">
-                            立即认购份额
-                        </a>
-                        <div class="flex items-center gap-4 px-6 border-l border-white/20">
-                            <div>
-                                <p class="text-[10px] text-gray-500 uppercase">Verified By</p>
-                                <p class="text-sm font-bold text-white">ASIA TV & NIBIRU</p>
-                            </div>
+                    
+                    <div class="grid grid-cols-3 gap-6 border-t border-white/10 pt-8 mb-10">
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1">目标募资额</p>
+                            <p class="text-3xl font-mono font-bold text-white">$30M</p>
                         </div>
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1">短剧市场规模</p>
+                            <p class="text-3xl font-mono font-bold text-gold">500亿+</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1">分红周期</p>
+                            <p class="text-3xl font-bold text-white">季度分红</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6">
+                        <a href="#invest" class="px-10 py-4 bg-gold text-black font-bold text-lg rounded hover:bg-white transition shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+                            立即认购
+                        </a>
+                        <a href="#" class="px-10 py-4 border border-white/20 text-white font-bold text-lg rounded hover:bg-white/10 transition flex items-center gap-2">
+                            <i class="fa-solid fa-download"></i> 下载白皮书
+                        </a>
                     </div>
                 </div>
-                
-                <div class="fin-panel p-8 rounded-xl">
-                    <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                        <i class="fa-solid fa-scale-balanced text-gold"></i> 核心优势对比
-                    </h3>
-                    <div class="space-y-4">
-                        <div class="grid grid-cols-3 text-xs font-bold text-gray-500 uppercase border-b border-white/10 pb-2">
-                            <div>维度 (Dimension)</div>
-                            <div>传统影视众筹</div>
-                            <div class="text-gold">FalconFlix RWA</div>
-                        </div>
-                        <div class="grid grid-cols-3 text-sm items-center">
-                            <div class="text-gray-400 font-bold">透明度</div>
-                            <div class="text-gray-600">❌ 黑箱操作，数据不透明</div>
-                            <div class="text-white">✅ <span class="text-gold">链上合约，实时审计</span></div>
-                        </div>
-                        <div class="grid grid-cols-3 text-sm items-center pt-4">
-                            <div class="text-gray-400 font-bold">流动性</div>
-                            <div class="text-gray-600">❌ 资金锁死，无法退出</div>
-                            <div class="text-white">✅ <span class="text-gold">FFX/NFT 二级市场交易</span></div>
-                        </div>
-                        <div class="grid grid-cols-3 text-sm items-center pt-4">
-                            <div class="text-gray-400 font-bold">收益权</div>
-                            <div class="text-gray-600">❌ 仅限单一项目回馈</div>
-                            <div class="text-white">✅ <span class="text-gold">平台生态分红 + 治理权</span></div>
+
+                <div class="lg:col-span-5 hidden lg:block relative">
+                    <div class="glass-panel p-2 rounded-2xl transform rotate-2 hover:rotate-0 transition duration-700 border-gold/30">
+                        <img src="banner11.png" alt="项目矩阵" class="w-full rounded-xl shadow-2xl">
+                        
+                        <div class="absolute -bottom-6 -left-6 bg-[#1a1a1a] border border-gold/30 p-4 rounded-lg shadow-xl animate-float">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gold flex items-center justify-center text-black text-xl font-bold">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">当前状态</p>
+                                    <p class="text-sm text-white font-bold">5部精品已杀青</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -179,375 +169,283 @@
         </div>
     </header>
 
-    <section id="industry" class="py-20 bg-[#05080F]">
+    <section id="assets" class="py-24 bg-[#05070A] relative border-t border-white/10">
         <div class="max-w-[1400px] mx-auto px-6">
             <div class="flex justify-between items-end mb-12">
                 <div>
-                    <h2 class="text-gold font-bold uppercase tracking-widest text-sm mb-2">Industry Insights</h2>
-                    <h3 class="text-4xl font-heading font-bold text-white">千亿级市场爆发前夜</h3>
+                    <h2 class="text-gold font-bold text-sm mb-2 uppercase tracking-widest">/// 核心资产库</h2>
+                    <h3 class="text-4xl font-bold text-white">2025 战略储备剧集</h3>
+                </div>
+                <div class="hidden md:block text-right text-gray-500 text-sm">
+                    <p>总估值: <span class="text-white font-mono text-lg">$15,000,000+</span></p>
+                    <p>项目数: <span class="text-white font-mono text-lg">10+</span></p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="fin-panel p-8 rounded-xl col-span-2 relative">
-                    <h4 class="text-lg font-bold text-white mb-8">全球短剧市场规模预测 (Growth Curve)</h4>
-                    <div class="h-48 flex items-end justify-between px-4 relative z-10">
-                        <div class="w-1/4 flex flex-col justify-end items-center group">
-                            <div class="text-xs text-gray-400 mb-2 opacity-0 group-hover:opacity-100 transition">$10B</div>
-                            <div class="w-full bg-gray-800 h-[20%] rounded-t transition-all duration-500 group-hover:bg-gray-700"></div>
-                            <div class="mt-4 text-xs text-gray-500 font-bold">2023</div>
-                        </div>
-                        <div class="w-1/4 flex flex-col justify-end items-center group">
-                            <div class="text-xs text-gray-400 mb-2 opacity-0 group-hover:opacity-100 transition">$50B</div>
-                            <div class="w-full bg-gray-700 h-[50%] rounded-t transition-all duration-500 group-hover:bg-gray-600"></div>
-                            <div class="mt-4 text-xs text-gray-500 font-bold">2024 (E)</div>
-                        </div>
-                        <div class="w-1/4 flex flex-col justify-end items-center group">
-                            <div class="text-xs text-gold mb-2 font-bold opacity-100">$100B+</div>
-                            <div class="w-full bg-gradient-to-t from-gold to-yellow-200 h-[90%] rounded-t shadow-[0_0_20px_rgba(212,175,55,0.3)] relative">
-                                <div class="absolute top-0 left-1/2 -translate-x-1/2 -mt-2 w-full text-center text-[10px] text-black font-bold bg-white px-1 rounded">爆发点</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="group relative bg-[#0D1117] rounded-xl overflow-hidden border border-white/10 hover:border-gold/60 transition duration-500">
+                    <div class="relative aspect-[3/4] overflow-hidden">
+                        <img src="movie-1.png" alt="沙影侠" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute top-3 right-3 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded uppercase">已完结</div>
+                        <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-center items-center text-center space-y-4">
+                            <div>
+                                <p class="text-xs text-gray-400">项目估值</p>
+                                <p class="text-2xl font-mono font-bold text-gold">$5,200,000</p>
                             </div>
-                            <div class="mt-4 text-xs text-gold font-bold">2025 (Target)</div>
+                            <div>
+                                <p class="text-xs text-gray-400">预计回报率</p>
+                                <p class="text-xl font-mono font-bold text-white">178%</p>
+                            </div>
+                            <button class="px-6 py-2 border border-white text-white text-xs font-bold hover:bg-white hover:text-black transition uppercase">查看合约</button>
                         </div>
                     </div>
-                    <svg class="absolute bottom-20 left-10 w-[85%] h-[60%] pointer-events-none" style="z-index: 0;">
-                        <path d="M0,150 Q150,100 300,50 T600,0" fill="none" stroke="#D4AF37" stroke-width="2" stroke-dasharray="5,5" />
-                    </svg>
+                    <div class="p-5 border-t border-white/5">
+                        <h4 class="text-lg font-bold text-white mb-1 truncate">沙影侠 (Shadow of Sands)</h4>
+                        <p class="text-xs text-gray-500">动作 / 悬疑 / 中东题材</p>
+                    </div>
                 </div>
 
-                <div class="fin-panel p-8 rounded-xl">
-                    <h4 class="text-lg font-bold text-white mb-6">行业痛点 (Pain Points)</h4>
-                    <ul class="space-y-6">
-                        <li class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded bg-red-900/20 border border-red-500/30 flex items-center justify-center text-red-500 shrink-0">
-                                <i class="fa-solid fa-clock"></i>
+                <div class="group relative bg-[#0D1117] rounded-xl overflow-hidden border border-white/10 hover:border-blue-500/60 transition duration-500">
+                    <div class="relative aspect-[3/4] overflow-hidden">
+                        <img src="movie-2.png" alt="城市之王" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute top-3 right-3 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded uppercase">制作中</div>
+                        <div class="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-center items-center text-center space-y-4">
+                            <div>
+                                <p class="text-xs text-gray-400">项目预算</p>
+                                <p class="text-2xl font-mono font-bold text-white">$8,500,000</p>
                             </div>
                             <div>
-                                <h5 class="text-white font-bold text-sm">融资周期长</h5>
-                                <p class="text-xs text-gray-500 mt-1">传统融资需 6-12 个月，错失市场热点。</p>
+                                <p class="text-xs text-gray-400">技术亮点</p>
+                                <p class="text-xl font-mono font-bold text-blue-400">AI 换脸技术</p>
                             </div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded bg-red-900/20 border border-red-500/30 flex items-center justify-center text-red-500 shrink-0">
-                                <i class="fa-solid fa-globe"></i>
-                            </div>
-                            <div>
-                                <h5 class="text-white font-bold text-sm">结算困难</h5>
-                                <p class="text-xs text-gray-500 mt-1">跨境支付手续费高，账期长达 90 天。</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded bg-red-900/20 border border-red-500/30 flex items-center justify-center text-red-500 shrink-0">
-                                <i class="fa-solid fa-user-slash"></i>
-                            </div>
-                            <div>
-                                <h5 class="text-white font-bold text-sm">用户无收益</h5>
-                                <p class="text-xs text-gray-500 mt-1">观众仅是消费者，无法分享爆款红利。</p>
-                            </div>
-                        </li>
-                    </ul>
+                            <button class="px-6 py-2 border border-white text-white text-xs font-bold hover:bg-white hover:text-black transition uppercase">查看详情</button>
+                        </div>
+                    </div>
+                    <div class="p-5 border-t border-white/5">
+                        <h4 class="text-lg font-bold text-white mb-1 truncate">城市之王 (King of City)</h4>
+                        <p class="text-xs text-gray-500">科幻 / 赛博朋克 / AI赋能</p>
+                    </div>
                 </div>
+
+                <div class="group relative bg-[#0D1117] rounded-xl overflow-hidden border border-white/10 hover:border-gold/30 transition duration-500">
+                    <div class="relative aspect-[3/4] bg-[#151921] flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-lock text-4xl text-gray-700 mb-4 group-hover:text-gold transition"></i>
+                        <p class="text-xs text-gray-500 uppercase font-bold">FFX 持有者专享</p>
+                    </div>
+                    <div class="p-5 border-t border-white/5">
+                        <h4 class="text-lg font-bold text-gray-400 mb-1">神秘项目 A</h4>
+                        <p class="text-xs text-gray-600">悬疑 / 日本市场</p>
+                    </div>
+                </div>
+
+                <div class="group relative bg-[#0D1117] rounded-xl overflow-hidden border border-white/10 hover:border-gold/30 transition duration-500">
+                    <div class="relative aspect-[3/4] bg-[#151921] flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-lock text-4xl text-gray-700 mb-4 group-hover:text-gold transition"></i>
+                        <p class="text-xs text-gray-500 uppercase font-bold">FFX 持有者专享</p>
+                    </div>
+                    <div class="p-5 border-t border-white/5">
+                        <h4 class="text-lg font-bold text-gray-400 mb-1">神秘项目 B</h4>
+                        <p class="text-xs text-gray-600">古装 / 东南亚市场</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section id="process" class="py-20 relative bg-tech-panel border-y border-white/5">
-        <div class="max-w-[1400px] mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-gold font-bold uppercase tracking-widest text-sm mb-2">User Journey</h2>
-                <h3 class="text-4xl font-heading font-bold text-white">C 端用户投资/参与路径</h3>
-            </div>
-
-            <div class="relative">
-                <div class="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-800 -translate-y-1/2 z-0"></div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 relative z-10">
-                    <div class="bg-[#0B0F19] p-6 border border-gold/30 rounded-xl text-center hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition group">
-                        <div class="w-16 h-16 mx-auto bg-gray-800 rounded-full flex items-center justify-center text-2xl text-white mb-4 group-hover:bg-gold group-hover:text-black transition">
-                            <i class="fa-solid fa-eye"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white mb-2">1. 浏览选剧</h4>
-                        <p class="text-xs text-gray-500">查看项目池，分析题材与团队。</p>
-                    </div>
-
-                    <div class="bg-[#0B0F19] p-6 border border-gold/30 rounded-xl text-center hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition group">
-                        <div class="w-16 h-16 mx-auto bg-gray-800 rounded-full flex items-center justify-center text-2xl text-white mb-4 group-hover:bg-gold group-hover:text-black transition">
-                            <i class="fa-solid fa-coins"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white mb-2">2. 支付认购</h4>
-                        <p class="text-xs text-gray-500">连接钱包，支付 USDT/ETH。</p>
-                    </div>
-
-                    <div class="bg-[#0B0F19] p-6 border border-gold/30 rounded-xl text-center hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition group">
-                        <div class="w-16 h-16 mx-auto bg-gray-800 rounded-full flex items-center justify-center text-2xl text-white mb-4 group-hover:bg-gold group-hover:text-black transition">
-                            <i class="fa-solid fa-file-signature"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white mb-2">3. 获取权益</h4>
-                        <p class="text-xs text-gray-500">自动铸造权益 NFT + 释放 FFX 代币。</p>
-                    </div>
-
-                    <div class="bg-[#0B0F19] p-6 border border-gold/30 rounded-xl text-center hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition group">
-                        <div class="w-16 h-16 mx-auto bg-gray-800 rounded-full flex items-center justify-center text-2xl text-white mb-4 group-hover:bg-gold group-hover:text-black transition">
-                            <i class="fa-solid fa-chart-line"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white mb-2">4. 跟踪进度</h4>
-                        <p class="text-xs text-gray-500">通过 Dashboard 实时查看制作与数据。</p>
-                    </div>
-
-                    <div class="bg-[#0B0F19] p-6 border border-gold rounded-xl text-center shadow-[0_0_20px_rgba(212,175,55,0.2)] scale-105 relative">
-                        <div class="absolute top-0 right-0 bg-gold text-black text-[10px] font-bold px-2 py-1 uppercase">Goal</div>
-                        <div class="w-16 h-16 mx-auto bg-gold rounded-full flex items-center justify-center text-2xl text-black mb-4">
-                            <i class="fa-solid fa-money-bill-trend-up"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-white mb-2">5. 获得分红</h4>
-                        <p class="text-xs text-gray-400">智能合约按季度自动派发收益。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="profit" class="py-24 bg-[#020408]">
+    <section id="ecosystem" class="py-24 bg-[#020408] relative border-t border-white/10">
         <div class="max-w-[1400px] mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <h2 class="text-gold font-bold uppercase tracking-widest text-sm mb-2">Revenue Model</h2>
-                    <h3 class="text-4xl font-heading font-bold text-white mb-6">收益分配与回购机制</h3>
-                    <p class="text-gray-400 leading-relaxed mb-8">
-                        平台的所有收入来源（播放、广告、版权）都将汇入智能合约资金池。
-                        <br>这是一个透明的、自动执行的链上分账系统，确保每一位代币持有者和投资人的权益。
-                    </p>
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-gold to-blue-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                    <img src="interactive.jpg" alt="电商互动演示" class="relative rounded-xl shadow-2xl border border-white/10 w-full">
                     
-                    <div class="bg-white/5 p-6 rounded-lg border-l-4 border-gold">
-                        <h4 class="text-white font-bold mb-2">💡 价值飞轮</h4>
-                        <p class="text-sm text-gray-400">平台收入越高 -> 回购力度越大 -> FFX 币价上涨 -> 吸引更多用户 -> 收入更高。</p>
+                    <div class="absolute -right-6 bottom-10 bg-black/80 backdrop-blur border border-gold/30 p-5 rounded-lg shadow-2xl animate-float hidden md:block">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-gold flex items-center justify-center text-black text-xl">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase font-bold">实时交易</p>
+                                <p class="text-white font-bold">+ 500 FFX <span class="text-green-500 text-xs">奖励</span></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="relative bg-[#0D1117] p-8 rounded-2xl border border-white/10">
-                    <div class="absolute top-8 left-0 space-y-4 -ml-4">
-                        <div class="bg-gray-800 text-xs px-3 py-1 rounded text-white border border-gray-700 shadow">分发分账</div>
-                        <div class="bg-gray-800 text-xs px-3 py-1 rounded text-white border border-gray-700 shadow">品牌广告</div>
-                        <div class="bg-gray-800 text-xs px-3 py-1 rounded text-white border border-gray-700 shadow">版权售卖</div>
-                        <div class="bg-gray-800 text-xs px-3 py-1 rounded text-white border border-gray-700 shadow">衍生品</div>
-                    </div>
+                <div>
+                    <h2 class="text-gold font-bold text-sm mb-2 uppercase tracking-widest">/// Shop to Earn</h2>
+                    <h3 class="text-4xl font-bold text-white mb-8">边看边买，消费即投资</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        FalconFlix 独创 <strong>"场景化电商"</strong> 协议。观众在观看短剧时，可一键购买剧中同款商品（豪车、服饰、电子产品）。
+                        <br>每一笔链上交易都会回购销毁 FFX，并给予买家代币奖励。
+                    </p>
 
-                    <div class="flex flex-col items-center justify-center py-10">
-                        <div class="w-40 h-40 rounded-full border-4 border-gold bg-gold/10 flex flex-col items-center justify-center relative shadow-[0_0_40px_rgba(212,175,55,0.2)]">
-                            <i class="fa-solid fa-sack-dollar text-4xl text-gold mb-2"></i>
-                            <span class="text-white font-bold">平台总收益池</span>
-                            <div class="absolute -inset-2 border border-dashed border-gold/50 rounded-full animate-spin-slow"></div>
-                        </div>
-                    </div>
-
-                    <div class="absolute top-1/2 right-0 -mr-4 transform -translate-y-1/2 space-y-6">
-                        <div class="flex items-center gap-2">
-                            <div class="h-0.5 w-8 bg-gold"></div>
-                            <div class="bg-gold text-black text-xs font-bold px-3 py-2 rounded shadow-lg">
-                                <i class="fa-solid fa-users mr-1"></i> FFX 持有者分红
+                    <ul class="space-y-6">
+                        <li class="flex gap-4">
+                            <div class="w-12 h-12 rounded bg-[#111] border border-white/10 flex items-center justify-center shrink-0 text-gold text-xl"><i class="fa-solid fa-link"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">无缝衔接</h4>
+                                <p class="text-sm text-gray-500">AI 识别剧中商品，弹窗一键支付，无需跳转。</p>
                             </div>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="h-0.5 w-8 bg-blue-500"></div>
-                            <div class="bg-blue-600 text-white text-xs font-bold px-3 py-2 rounded shadow-lg">
-                                <i class="fa-solid fa-fire mr-1"></i> 代币回购销毁
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="w-12 h-12 rounded bg-[#111] border border-white/10 flex items-center justify-center shrink-0 text-blue-500 text-xl"><i class="fa-solid fa-fire"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">通缩模型</h4>
+                                <p class="text-sm text-gray-500">电商利润的 20% 用于回购销毁 FFX，持续推高币价。</p>
                             </div>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="h-0.5 w-8 bg-gray-500"></div>
-                            <div class="bg-gray-700 text-white text-xs font-bold px-3 py-2 rounded shadow-lg">
-                                <i class="fa-solid fa-seedling mr-1"></i> 基金会/储备
-                            </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="token" class="py-24 bg-[#05080F] border-t border-white/5">
+    <section id="token" class="py-24 bg-[#05070A] border-y border-white/10">
         <div class="max-w-[1400px] mx-auto px-6">
             <div class="text-center mb-16">
-                <h3 class="text-4xl font-heading font-bold text-white mb-4">募资机制 & 代币经济 (FFX)</h3>
-                <p class="text-gray-500">Total Supply: 1,000,000,000 FFX | Initial Valuation: $100M</p>
+                <h3 class="text-4xl font-bold text-white mb-4">FFX 通证经济模型</h3>
+                <p class="text-gray-500">发行总量: 10亿 (1 Billion) | 初始估值: $1.5亿</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div class="fin-panel p-8 rounded-xl">
-                    <h4 class="text-xl font-bold text-white mb-6 border-l-4 border-gold pl-4">阶段定价 (Pricing Tiers)</h4>
-                    <table class="w-full text-sm text-left">
-                        <thead class="bg-white/5 text-gray-400 uppercase text-xs">
-                            <tr>
-                                <th class="px-4 py-3">阶段 (Stage)</th>
-                                <th class="px-4 py-3">价格 (USDT)</th>
-                                <th class="px-4 py-3">说明 (Note)</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-white/5">
-                            <tr class="bg-gold/10">
-                                <td class="px-4 py-3 font-bold text-gold">私募 S (Whitelist)</td>
-                                <td class="px-4 py-3 font-mono text-lg">0.10</td>
-                                <td class="px-4 py-3 text-xs text-gray-400">约公售价三折 (30% off)</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 text-white">私募 A</td>
-                                <td class="px-4 py-3 font-mono text-lg text-gray-300">0.12</td>
-                                <td class="px-4 py-3 text-xs text-gray-500">锁仓 12 个月</td>
-                            </tr>
-                            <tr class="border-l-2 border-gold">
-                                <td class="px-4 py-3 text-white">私募 B (Current)</td>
-                                <td class="px-4 py-3 font-mono text-lg text-white">0.15</td>
-                                <td class="px-4 py-3 text-xs text-green-500 font-bold">正在进行中...</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 text-gray-500">公售参考价</td>
-                                <td class="px-4 py-3 font-mono text-lg text-gray-500">0.30</td>
-                                <td class="px-4 py-3 text-xs text-gray-500">TGE 目标</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+                <div class="space-y-4">
+                    <div class="glass-panel p-4 rounded flex justify-between items-center border-l-4 border-gold">
+                        <span class="text-white font-bold">私募/公募</span>
+                        <span class="text-gold font-mono font-bold text-xl">30%</span>
+                    </div>
+                    <div class="glass-panel p-4 rounded flex justify-between items-center border-l-4 border-green-500">
+                        <span class="text-white font-bold">生态激励</span>
+                        <span class="text-green-500 font-mono font-bold text-xl">25%</span>
+                    </div>
+                    <div class="glass-panel p-4 rounded flex justify-between items-center border-l-4 border-blue-500">
+                        <span class="text-white font-bold">核心团队 (锁仓2年)</span>
+                        <span class="text-blue-500 font-mono font-bold text-xl">20%</span>
+                    </div>
+                    <div class="glass-panel p-4 rounded flex justify-between items-center border-l-4 border-purple-500">
+                        <span class="text-white font-bold">基金会储备</span>
+                        <span class="text-purple-500 font-mono font-bold text-xl">15%</span>
+                    </div>
+                    <div class="glass-panel p-4 rounded flex justify-between items-center border-l-4 border-gray-500">
+                        <span class="text-white font-bold">流动性做市</span>
+                        <span class="text-gray-500 font-mono font-bold text-xl">10%</span>
+                    </div>
                 </div>
 
-                <div class="fin-panel p-8 rounded-xl flex flex-col md:flex-row items-center gap-8">
-                    <div class="w-48 h-48 flex-shrink-0 pie-chart relative border-4 border-[#0D1117] shadow-2xl">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-24 h-24 bg-[#0D1117] rounded-full flex items-center justify-center text-white font-bold text-xl shadow-inner">FFX</div>
-                        </div>
+                <div class="flex justify-center relative">
+                    <div class="absolute inset-0 bg-gold/20 blur-[80px] rounded-full"></div>
+                    <img src="coin.jpeg" alt="FFX Coin" class="w-64 h-64 md:w-80 md:h-80 object-contain relative z-10 drop-shadow-2xl animate-float">
+                </div>
+
+                <div class="space-y-8">
+                    <div class="bg-[#0D1117] p-6 rounded-xl border border-gold/30">
+                        <h4 class="text-gold font-bold mb-4 border-b border-white/10 pb-2">持币权益</h4>
+                        <ul class="space-y-3 text-sm text-gray-400">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> 季度分红 (USDT结算)</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> 剧集解锁与去广告</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> 选角投票权 (DAO)</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> NFT 白名单优先权</li>
+                        </ul>
                     </div>
-                    
-                    <div class="flex-1 grid grid-cols-1 gap-3 text-sm">
-                        <div class="flex justify-between items-center border-b border-white/5 pb-1">
-                            <span class="flex items-center gap-2"><span class="w-3 h-3 bg-[#D4AF37] rounded-sm"></span> 众筹/私募</span>
-                            <span class="font-mono font-bold text-white">30%</span>
+
+                    <div class="bg-[#0D1117] p-6 rounded-xl border border-white/10">
+                        <h4 class="text-white font-bold mb-4 border-b border-white/10 pb-2">当前私募价格</h4>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500 uppercase">Private Round B</span>
+                            <span class="text-3xl font-mono font-bold text-gold">$0.15</span>
                         </div>
-                        <div class="flex justify-between items-center border-b border-white/5 pb-1">
-                            <span class="flex items-center gap-2"><span class="w-3 h-3 bg-[#22C55E] rounded-sm"></span> 生态激励</span>
-                            <span class="font-mono font-bold text-white">25%</span>
+                        <div class="mt-2 w-full bg-gray-700 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-gold h-full w-[65%]"></div>
                         </div>
-                        <div class="flex justify-between items-center border-b border-white/5 pb-1">
-                            <span class="flex items-center gap-2"><span class="w-3 h-3 bg-[#EF4444] rounded-sm"></span> 团队/顾问</span>
-                            <span class="font-mono font-bold text-white">20%</span>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-white/5 pb-1">
-                            <span class="flex items-center gap-2"><span class="w-3 h-3 bg-[#A855F7] rounded-sm"></span> 基金会/储备</span>
-                            <span class="font-mono font-bold text-white">15%</span>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-white/5 pb-1">
-                            <span class="flex items-center gap-2"><span class="w-3 h-3 bg-[#3B82F6] rounded-sm"></span> 流动性/做市</span>
-                            <span class="font-mono font-bold text-white">10%</span>
-                        </div>
+                        <p class="text-[10px] text-gray-500 mt-1 text-right">已募资 65%</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-20 bg-[#020408] relative">
-        <div class="max-w-[1400px] mx-auto px-6">
-            <div class="text-center mb-12">
-                <h3 class="text-3xl font-heading font-bold text-white mb-2">PROJECT POOL: STARTUP DRAMAS</h3>
-                <p class="text-sm text-gray-500 uppercase tracking-widest">5 Completed | 5 In Production</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                <div class="group relative rounded-lg overflow-hidden border border-white/10 hover:border-gold/50 transition cursor-pointer">
-                    <img src="movie-1.png" class="w-full aspect-[3/4] object-cover transition duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
-                    <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-4 pt-12">
-                        <span class="text-[10px] bg-green-600 text-white px-2 py-0.5 rounded uppercase font-bold">Completed</span>
-                        <h4 class="text-white font-bold mt-2 truncate">Shadow of Sands</h4>
-                    </div>
-                </div>
-                <div class="group relative rounded-lg overflow-hidden border border-white/10 hover:border-gold/50 transition cursor-pointer">
-                    <img src="movie-2.png" class="w-full aspect-[3/4] object-cover transition duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
-                    <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-4 pt-12">
-                        <span class="text-[10px] bg-gold text-black px-2 py-0.5 rounded uppercase font-bold">In Production</span>
-                        <h4 class="text-white font-bold mt-2 truncate">King of City</h4>
-                    </div>
-                </div>
-                <div class="group relative rounded-lg overflow-hidden border border-white/10 bg-gray-900 flex items-center justify-center">
-                    <div class="text-center">
-                        <i class="fa-solid fa-lock text-2xl text-gray-600 mb-2"></i>
-                        <p class="text-xs text-gray-500">Unlock with FFX</p>
-                    </div>
-                </div>
-                <div class="group relative rounded-lg overflow-hidden border border-white/10 bg-gray-900 flex items-center justify-center">
-                    <div class="text-center">
-                        <i class="fa-solid fa-lock text-2xl text-gray-600 mb-2"></i>
-                        <p class="text-xs text-gray-500">Unlock with FFX</p>
-                    </div>
-                </div>
-                <div class="group relative rounded-lg overflow-hidden border border-white/10 bg-gray-900 flex items-center justify-center">
-                    <div class="text-center">
-                        <i class="fa-solid fa-lock text-2xl text-gray-600 mb-2"></i>
-                        <p class="text-xs text-gray-500">Unlock with FFX</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section id="invest" class="py-24 relative bg-fixed bg-cover bg-center" style="background-image: url('banner.webp');">
+        <div class="absolute inset-0 bg-[#020408]/90 backdrop-blur-sm"></div>
+        
+        <div class="max-w-3xl mx-auto px-6 relative z-10 text-center">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-white mb-4">加入 FFX 私募认购</h2>
+            <p class="text-gray-400 mb-12">最低起投 $5,000 USDT。不仅是投资代币，更是投资未来的娱乐帝国。</p>
 
-    <section id="roadmap" class="py-20 bg-[#0D1117] border-t border-white/5">
-        <div class="max-w-[1400px] mx-auto px-6">
-            <h3 class="text-3xl font-heading font-bold text-white mb-12 text-center uppercase">Roadmap (5 Years)</h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-2">
-                <div class="bg-gradient-to-r from-gold to-yellow-600 p-4 clip-path-arrow relative group hover:-translate-y-1 transition">
-                    <h4 class="text-2xl font-bold text-black font-heading">2025</h4>
-                    <ul class="text-[10px] font-bold text-black mt-2 space-y-1">
-                        <li>• 独立站上线</li>
-                        <li>• 10部众筹</li>
-                        <li>• 支付集成</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-800 p-4 relative border-l-4 border-gray-700 hover:bg-gray-700 transition">
-                    <h4 class="text-2xl font-bold text-gray-300 font-heading">2026</h4>
-                    <ul class="text-[10px] text-gray-400 mt-2 space-y-1">
-                        <li>• FFX 发行与上所</li>
-                        <li>• APP 内测</li>
-                        <li>• 项目库 30-50 部</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-800 p-4 relative border-l-4 border-gray-700 hover:bg-gray-700 transition">
-                    <h4 class="text-2xl font-bold text-gray-300 font-heading">2027</h4>
-                    <ul class="text-[10px] text-gray-400 mt-2 space-y-1">
-                        <li>• 百部短剧矩阵</li>
-                        <li>• DAO 投票上线</li>
-                        <li>• 广告模型成熟</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-800 p-4 relative border-l-4 border-gray-700 hover:bg-gray-700 transition hidden md:block">
-                    <h4 class="text-2xl font-bold text-gray-300 font-heading">2028</h4>
-                    <ul class="text-[10px] text-gray-400 mt-2 space-y-1">
-                        <li>• 全球节点</li>
-                        <li>• RWA 规模化</li>
-                        <li>• 多语种深耕</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-800 p-4 relative border-l-4 border-gray-700 hover:bg-gray-700 transition hidden md:block">
-                    <h4 class="text-2xl font-bold text-gray-300 font-heading">2029</h4>
-                    <ul class="text-[10px] text-gray-400 mt-2 space-y-1">
-                        <li>• "短剧界奈飞"</li>
-                        <li>• 生态正循环</li>
-                        <li>• 稳态现金流</li>
-                    </ul>
+            <div class="bg-[#0D1117] border border-gold/30 p-8 md:p-12 rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+                <div class="space-y-6">
+                    <div class="bg-black border border-gray-800 rounded-xl p-4 flex justify-between items-center">
+                        <div class="text-left">
+                            <label class="text-[10px] text-gray-500 font-bold uppercase block">支付金额</label>
+                            <input type="number" value="5000" class="bg-transparent text-2xl font-mono font-bold text-white outline-none w-32" placeholder="0">
+                        </div>
+                        <div class="flex items-center gap-2 bg-gray-800 px-3 py-1.5 rounded">
+                            <img src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=025" class="w-5 h-5">
+                            <span class="text-sm font-bold text-white">USDT</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center -my-3 text-gold text-xl relative z-10">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </div>
+
+                    <div class="bg-black border border-gold/30 rounded-xl p-4 flex justify-between items-center">
+                        <div class="text-left">
+                            <label class="text-[10px] text-gold font-bold uppercase block">预估获得</label>
+                            <span class="text-2xl font-mono font-bold text-gold">33,333.33</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-gray-800 px-3 py-1.5 rounded">
+                            <img src="logo.png" class="w-5 h-5 rounded-full">
+                            <span class="text-sm font-bold text-white">FFX</span>
+                        </div>
+                    </div>
+
+                    <button class="w-full py-4 bg-gold hover:bg-white hover:text-black text-black font-bold text-lg rounded transition shadow-lg">
+                        连接钱包并认购
+                    </button>
+                    <p class="text-xs text-gray-600">* 智能合约审计通过。资金安全由多签钱包保障。</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer class="bg-black border-t border-white/10 py-12">
-        <div class="max-w-[1400px] mx-auto px-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-3">
-                <img src="logo.png" class="h-8 w-8 grayscale opacity-50">
-                <span class="font-heading font-bold text-gray-500 tracking-widest">FALCON FLIX FOUNDATION</span>
+        <div class="max-w-[1400px] mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="logo.png" class="h-8 w-8 rounded opacity-70 grayscale">
+                        <span class="text-xl font-bold text-gray-500 tracking-widest">FALCON FLIX</span>
+                    </div>
+                    <p class="text-gray-600 text-sm max-w-sm">
+                        总部位于新加坡与迪拜。我们致力于为全球投资者提供合规、透明的影视内容资产投资机会。
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-6">关于项目</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-gold transition">白皮书下载</a></li>
+                        <li><a href="#" class="hover:text-gold transition">审计报告</a></li>
+                        <li><a href="#" class="hover:text-gold transition">品牌资产</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-6">法律合规</h4>
+                    <ul class="space-y-3 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-gold transition">隐私政策</a></li>
+                        <li><a href="#" class="hover:text-gold transition">服务条款</a></li>
+                        <li><a href="#" class="hover:text-gold transition">风险披露</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="flex gap-8 text-xs text-gray-600 font-bold uppercase">
-                <a href="#" class="hover:text-gold transition">Whitepaper</a>
-                <a href="#" class="hover:text-gold transition">Audit</a>
-                <a href="#" class="hover:text-gold transition">Contact</a>
-            </div>
-            <div class="text-[10px] text-gray-700">
-                &copy; 2025 All Rights Reserved. Singapore | Dubai.
+            <div class="border-t border-white/5 pt-8 flex justify-between items-center">
+                <p class="text-xs text-gray-700">&copy; 2025 FalconFlix Foundation. All Rights Reserved.</p>
+                <div class="flex gap-4 text-gray-600">
+                    <a href="#" class="hover:text-gold"><i class="fa-brands fa-twitter text-lg"></i></a>
+                    <a href="#" class="hover:text-gold"><i class="fa-brands fa-telegram text-lg"></i></a>
+                    <a href="#" class="hover:text-gold"><i class="fa-brands fa-discord text-lg"></i></a>
+                </div>
             </div>
         </div>
     </footer>
